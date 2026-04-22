@@ -1,0 +1,672 @@
+@import url("https://fonts.googleapis.com/css2?family=Mona+Sans:ital,wght@0,200..900;1,200..900&display=swap");
+@import "tailwindcss";
+
+/* ─── DARK MODE (default) ────────────────────────────────────────────────── */
+
+article:hover .card-overlay { opacity: 1 !important; }
+
+/* Add to your global css file for sleek back-card scrollbars */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 3px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 10px;
+}
+
+:root,
+[data-theme="dark"] {
+  --gradient: radial-gradient(circle, #e5e5e5 0%, #fff 100%);
+
+  /* Backgrounds */
+  --bg-primary: #000000;
+  --bg-secondary: #0e0e10;
+  --bg-card: #1c1c21;
+  --bg-card-hover: #282732;
+
+  /* Text */
+  --text-primary: #ffffff;
+  --text-secondary: #d9ecff;
+  --text-muted: #839cb5;
+
+  /* Accents — Batman blue/purple */
+  --accent-primary: #52aeff;
+  --accent-secondary: #6d45ce;
+  --accent-glow: rgba(82, 174, 255, 0.15);
+
+  /* Borders */
+  --border-color: #1c1c21;
+
+  /* Navbar */
+  --navbar-bg-scrolled: rgba(0, 0, 0, 0.95);
+  --navbar-bg-top: transparent;
+
+  /* Form inputs */
+  --input-bg: #2d2d38;
+
+  /* Timeline/misc */
+  --timeline-bg: #000000;
+}
+
+
+/* Activates the hover overlay on project cards */
+article:hover .card-overlay { opacity: 1 !important; }
+
+/* ─── LIGHT MODE — Superman (Metropolis vibes) ───────────────────────────── */
+[data-theme="light"] {
+  --gradient: radial-gradient(circle, #c9d6ff 0%, #e2e2e2 100%);
+
+  /* Backgrounds — bright Metropolis steel */
+  --bg-primary: #f0f4ff;
+  --bg-secondary: #e8edf7;
+  --bg-card: #dce4f5;
+  --bg-card-hover: #c8d4ee;
+
+  /* Text */
+  --text-primary: #0a0a1a;
+  --text-secondary: #1a1a3e;
+  --text-muted: #4a5568;
+
+  /* Accents — Superman red/yellow */
+  --accent-primary: #d4200c;
+  /* Superman red */
+  --accent-secondary: #f5c518;
+  /* Superman yellow */
+  --accent-glow: rgba(212, 32, 12, 0.12);
+
+  /* Borders */
+  --border-color: #c8d4ee;
+
+  /* Navbar */
+  --navbar-bg-scrolled: rgba(240, 244, 255, 0.97);
+  --navbar-bg-top: transparent;
+
+  /* Form inputs */
+  --input-bg: #dce4f5;
+
+  /* Timeline/misc */
+  --timeline-bg: #f0f4ff;
+}
+
+/* ─── BASE STYLES — now use variables ───────────────────────────────────── */
+html,
+body {
+  width: 100dvw;
+  overflow-x: hidden;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  scroll-behavior: smooth;
+  font-family: "Mona Sans", sans-serif;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+section {
+  width: 100dvw;
+}
+
+/* ─── TAILWIND THEME (static palette — unchanged) ────────────────────────── */
+@theme {
+  --font-sans: "Mona Sans", sans-serif;
+  --color-white-50: #d9ecff;
+  --color-black-50: #1c1c21;
+  --color-black-100: #0e0e10;
+  --color-black-200: #282732;
+  --color-blue-50: #839cb5;
+  --color-blue-100: #2d2d38;
+}
+
+/* ─── UTILITIES ──────────────────────────────────────────────────────────── */
+@layer utilities {
+  .flex-center {
+    @apply flex justify-center items-center;
+  }
+
+  .flex-col-center {
+    @apply flex flex-col justify-center items-center;
+  }
+
+  /* Theme-aware utility classes */
+  .bg-theme-primary {
+    background-color: var(--bg-primary);
+  }
+
+  .bg-theme-secondary {
+    background-color: var(--bg-secondary);
+  }
+
+  .bg-theme-card {
+    background-color: var(--bg-card);
+  }
+
+  .text-theme-primary {
+    color: var(--text-primary);
+  }
+
+  .text-theme-secondary {
+    color: var(--text-secondary);
+  }
+
+  .text-theme-muted {
+    color: var(--text-muted);
+  }
+
+  .accent-primary {
+    color: var(--accent-primary);
+  }
+
+  .border-theme {
+    border-color: var(--border-color);
+  }
+}
+
+[data-theme="light"] .cta-button .arrow-wrapper img {
+  filter: invert(1);
+}
+
+
+
+@layer components {
+  .padding-x {
+    @apply px-5 md:px-10;
+  }
+
+  .padding-x-lg {
+    @apply px-5 md:px-20;
+  }
+
+  .section-padding {
+    @apply px-5 md:px-10 md:mt-40 mt-20;
+  }
+
+  .mt-responsive {
+    @apply xl:mt-20 md:mt-0 mt-40;
+  }
+
+  /* General Grids */
+  .grid-base {
+    @apply grid grid-cols-1;
+  }
+
+  .grid-2-cols {
+    @apply grid grid-cols-1 md:grid-cols-2 gap-6;
+  }
+
+  .grid-3-cols {
+    @apply grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6;
+  }
+
+  .grid-3-cols-md-tight {
+    @apply grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-0;
+  }
+
+  .grid-4-cols {
+    @apply grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-7;
+  }
+
+  .grid-12-cols {
+    @apply grid grid-cols-1 xl:grid-cols-12 gap-10;
+  }
+
+  .hero-text {
+    @apply flex flex-col justify-center md:text-[60px] text-[30px] font-semibold relative z-10 pointer-events-none;
+    color: var(--text-primary);
+
+    img {
+      @apply size-8 md:size-10 object-contain;
+    }
+
+    .slide {
+      @apply absolute pt-0 px-2 md:px-5 py-[30px] h-[48px] md:h-[78px] md:translate-y-1 translate-y-0 overflow-hidden;
+    }
+  }
+
+  .hero-badge {
+    @apply py-2 px-4 rounded-full w-fit text-sm md:text-base text-nowrap;
+    background-color: var(--bg-card-hover);
+    color: var(--text-secondary);
+  }
+
+  /* ── NAVBAR ── */
+  .navbar {
+    @apply fixed w-full left-1/2 py-5 px-5 md:px-20 -translate-x-1/2 z-[100] transition-all duration-300 ease-in-out;
+
+    &.scrolled {
+      @apply top-0;
+      background-color: var(--navbar-bg-scrolled);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    &.not-scrolled {
+      @apply md:top-10 top-0;
+      background-color: var(--navbar-bg-top);
+    }
+
+    .inner {
+      @apply mx-auto flex items-center justify-between;
+    }
+
+    .logo {
+      @apply text-xl md:text-2xl font-semibold transition-transform duration-300 hover:scale-105;
+      color: var(--text-secondary);
+    }
+
+    nav.desktop {
+      @apply hidden lg:flex items-center;
+
+      ul {
+        @apply flex space-x-8;
+
+        li {
+          @apply relative;
+          color: var(--text-secondary);
+
+          span {
+            @apply transition-colors duration-300;
+
+            &:hover {
+              color: var(--text-primary);
+            }
+          }
+
+          .underline {
+            @apply absolute -bottom-1 left-0 w-0 h-0.5 transition-all duration-300 group-hover:w-full;
+            background-color: var(--accent-primary);
+          }
+        }
+      }
+    }
+
+    .contact-btn {
+      @apply flex;
+
+      .inner {
+        @apply px-5 py-2 rounded-lg transition-colors duration-300;
+        background-color: var(--accent-primary);
+        color: var(--bg-primary);
+      }
+    }
+  }
+
+  /* ── CARDS ── */
+  .card-border {
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-secondary);
+  }
+
+  /* ── TIMELINE ── */
+  .timeline-wrapper {
+    @apply absolute top-0 xl:left-[35.5vw] md:left-10 left-5 h-full flex justify-center;
+  }
+
+  .timeline {
+    @apply absolute z-30 h-[110%] -top-10 w-14 md:w-28;
+    background-color: var(--timeline-bg);
+  }
+
+  .timeline-logo {
+    @apply md:size-20 size-10 flex-none rounded-full flex justify-center items-center md:-translate-y-7;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-secondary);
+  }
+
+  .exp-card-wrapper {
+    @apply flex flex-col-reverse xl:flex-row xl:gap-20 gap-10 justify-between;
+  }
+
+  .gradient-edge {
+    @apply w-36 h-full absolute bottom-0 z-20;
+  }
+
+  .tech-card-animated-bg {
+    @apply absolute left-0 bottom-[-100%] w-full h-full transition-all duration-700 group-hover:bottom-0;
+    background-color: var(--bg-card-hover);
+  }
+
+  .tech-card-content {
+    @apply flex flex-col md:justify-center items-center xl:gap-5 xl:h-[50vh] overflow-hidden relative z-10 group-hover:cursor-grab;
+
+    & p {
+      @apply text-lg 2xl:text-2xl pb-5 xl:pb-0 font-semibold text-center;
+      color: var(--text-secondary);
+    }
+  }
+
+  .tech-grid {
+    @apply grid xl:grid-cols-5 md:grid-cols-3 grid-cols-1 xl:gap-16 md:gap-10 gap-5 mt-16;
+  }
+
+  .tech-icon-wrapper {
+    @apply flex justify-center items-center w-52 h-60 relative;
+  }
+
+  /* ── FORM ── */
+  form {
+    label {
+      @apply block mb-2;
+      color: var(--text-secondary);
+    }
+
+    input,
+    textarea {
+      @apply w-full px-4 py-4 md:text-base text-sm rounded-md;
+      background-color: var(--input-bg);
+      color: var(--text-primary);
+
+      &::placeholder {
+        color: var(--text-muted);
+      }
+    }
+
+    a {
+      @apply w-full py-4 font-semibold rounded-md flex justify-center items-center gap-2;
+      background-color: var(--accent-primary);
+      color: var(--bg-primary);
+
+      img {
+        @apply inline-block;
+      }
+    }
+  }
+
+  /* ── CTA BUTTON ── */
+  .cta-wrapper {
+    @apply relative z-20 cursor-pointer;
+  }
+
+  .cta-button {
+    @apply px-4 py-4 rounded-lg flex justify-center items-center relative cursor-pointer overflow-hidden;
+    background-color: var(--bg-card-hover);
+
+
+    .bg-circle {
+      @apply absolute -right-10 origin-center top-1/2 -translate-y-1/2 w-[120%] h-[120%] group-hover:size-10 group-hover:right-10 rounded-full transition-all duration-500;
+      background-color: var(--text-secondary);
+    }
+
+    .text {
+      @apply uppercase md:text-lg transition-all duration-500 group-hover:-translate-x-5 xl:translate-x-0 -translate-x-5;
+      color: var(--text-primary);
+
+      /* white in dark, near-black in light ✅ */
+      &:hover {
+        color: var(--bg-primary);
+      }
+
+      /* flips on hover when circle covers it */
+    }
+
+    .arrow-wrapper {
+      @apply size-10 rounded-full absolute right-10 top-1/2 -translate-y-1/2 flex justify-center items-center overflow-hidden;
+
+      img {
+        @apply size-5 xl:-translate-y-32 translate-y-0 animate-bounce group-hover:translate-y-0 transition-all duration-500;
+      }
+    }
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    @apply my-10 md:mt-20 mt-10 px-5 md:px-20 xl:px-20 flex items-center justify-center;
+    color: var(--text-secondary);
+
+    .footer-container {
+      @apply grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-0 w-full;
+    }
+
+    p {
+      @apply text-center md:text-start;
+    }
+
+    .socials {
+      @apply flex items-center justify-center gap-5;
+
+      .icon {
+        @apply flex justify-center items-center rounded-xl size-10 md:size-12 cursor-pointer transition-all duration-500;
+        border: 1px solid var(--border-color);
+        background-color: var(--bg-secondary);
+
+        &:hover {
+          background-color: var(--bg-card);
+        }
+      }
+
+      img {
+        @apply inline-block;
+      }
+    }
+  }
+
+  /* ── MARQUEE ── */
+  .marquee-item {
+    @apply md:w-40 w-32;
+  }
+
+  /* ── APP SHOWCASE ── */
+  .app-showcase {
+    @apply w-full mt-20 px-5 md:px-20 py-10 md:py-20 flex items-center justify-center;
+
+    .showcaselayout {
+      @apply flex xl:flex-row flex-col gap-10 justify-between;
+    }
+
+    .first-project-wrapper {
+      @apply h-full flex flex-col justify-between xl:w-[60%];
+
+      .image-wrapper {
+        @apply xl:h-[70vh] md:h-[50vh] h-96 relative;
+
+        img {
+          @apply w-full h-full object-cover rounded-xl absolute inset-0;
+        }
+      }
+
+      .text-content {
+        @apply space-y-5 mt-5;
+
+        .badges {
+          @apply flex gap-2 mb-4;
+        }
+
+        h2 {
+          @apply text-2xl md:text-3xl lg:text-4xl font-bold;
+          color: var(--text-primary);
+        }
+      }
+    }
+
+    .project-list-wrapper {
+      @apply flex md:flex-row flex-col xl:flex-col gap-10 xl:w-[40%];
+
+      .image-wrapper {
+        @apply xl:h-[37vh] md:h-52 lg:h-72 h-64 relative rounded-xl xl:px-5 2xl:px-12 py-0;
+      }
+
+      img {
+        @apply w-full h-full object-contain rounded-xl;
+      }
+
+      h2 {
+        @apply text-lg md:text-xl lg:text-2xl font-semibold mt-5;
+        color: var(--text-primary);
+      }
+    }
+  }
+}
+
+/* ─── HERO TEXT SLIDER ───────────────────────────────────────────────────── */
+.slide {
+  display: inline-block;
+  flex-direction: column;
+  transition: all cubic-bezier(0.71, 0.03, 0.34, 1);
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  animation: wordSlider 21s infinite cubic-bezier(0.9, 0.01, 0.3, 0.99);
+}
+
+@keyframes wordSlider {
+  0% {
+    transform: translateY(0.5%);
+  }
+
+  12.5% {
+    transform: translateY(-12.5%);
+  }
+
+  25% {
+    transform: translateY(-25%);
+  }
+
+  37.5% {
+    transform: translateY(-37.5%);
+  }
+
+  50% {
+    transform: translateY(-50%);
+  }
+
+  62.5% {
+    transform: translateY(-62.5%);
+  }
+
+  75% {
+    transform: translateY(-75%);
+  }
+
+  87.5% {
+    transform: translateY(-87.5%);
+  }
+}
+
+/* ─── GRADIENT LINE ──────────────────────────────────────────────────────── */
+.gradient-line {
+  width: 2px;
+  background: linear-gradient(0deg,
+      rgba(69, 222, 196, 0) 0%,
+      #62e0ff 25%,
+      #52aeff 37.51%,
+      #fd5c79 62.83%,
+      #6d45ce 92.91%);
+}
+
+/* Light mode gradient line flips to Superman red/gold */
+[data-theme="light"] .gradient-line {
+  background: linear-gradient(0deg,
+      rgba(245, 197, 24, 0) 0%,
+      #f5c518 25%,
+      #d4200c 50%,
+      #0033cc 92.91%);
+}
+
+/* ─── GRADIENT EDGES ─────────────────────────────────────────────────────── */
+.gradient-edge:nth-of-type(1) {
+  left: 0;
+  background: linear-gradient(90deg, var(--bg-primary) 0%, rgba(255, 255, 255, 0) 100%);
+}
+
+.gradient-edge:nth-of-type(2) {
+  right: 0;
+  background: linear-gradient(-90deg, var(--bg-primary) 0%, rgba(255, 255, 255, 0) 100%);
+}
+
+/* ─── MARQUEE ────────────────────────────────────────────────────────────── */
+.marquee {
+  width: 100dvw;
+  overflow: hidden;
+  position: relative;
+}
+
+.marquee-box {
+  display: flex;
+  align-items: center;
+  width: 200%;
+  height: 100%;
+  position: absolute;
+  overflow: hidden;
+  animation: marquee 60s linear infinite;
+}
+
+.marquee-item {
+  float: left;
+}
+
+@keyframes marquee {
+  0% {
+    left: 0;
+  }
+
+  100% {
+    left: -100%;
+  }
+}
+
+/* ─── CARD GLOW BORDER ───────────────────────────────────────────────────── */
+.card {
+  --start: 0;
+  position: relative;
+  z-index: 40;
+  overflow: hidden;
+  transition: border-color 1s ease-in-out;
+}
+
+.card::before {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 12px;
+  border: 2px solid transparent;
+  background: var(--gradient);
+  background-attachment: fixed;
+  mask: linear-gradient(#0000, #0000),
+    conic-gradient(from calc((var(--start) - 15) * 1deg),
+      #ffffff1f 0deg,
+      white,
+      #ffffff00 100deg);
+  mask-composite: intersect;
+  mask-clip: padding-box, border-box;
+  opacity: 0;
+  transition: 0.5s ease;
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+.glow {
+  pointer-events: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  filter: blur(10px) saturate(200);
+}
+
+/* ─── THEME TRANSITION — smooth everything on swap ──────────────────────── */
+*,
+*::before,
+*::after {
+  transition: background-color 0.35s ease, border-color 0.35s ease, color 0.2s ease;
+}
+
+@keyframes scanline {
+  from { top: 0; }
+  to   { top: calc(100% - 2px); }
+}
+
+@keyframes pulse {
+  from { opacity: 1; }
+  to   { opacity: 0.3; }
+}

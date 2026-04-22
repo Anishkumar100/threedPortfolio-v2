@@ -1,0 +1,246 @@
+// src/constants/skills.js
+
+export const heroStats = [
+  { value: '3+',  label: 'Years Building'    },
+  { value: '11',  label: 'Projects Shipped'  },
+  { value: '30+', label: 'Technologies Used' },
+]
+
+export const skillCategories = [
+  {
+    id: 'frontend',
+    label: 'Frontend & UI',
+    accent: '#52aeff',
+    glow: 'rgba(82,174,255,0.15)',
+    icon: '⬡',
+    summary: 'Cinematic interfaces, component systems, and motion-driven UX.',
+    skills: [
+      {
+        name: 'React',
+        level: 5,
+        since: 2023,
+        desc: 'Primary framework across 8+ projects. Deep knowledge of hooks, context, memoization, and component architecture.',
+      },
+      {
+        name: 'Next.js',
+        level: 4,
+        since: 2024,
+        desc: 'App Router, server components, and ISR used in TemplateZone and AniVoice AI for production-grade performance.',
+      },
+      {
+        name: 'JavaScript (ES6+)',
+        level: 5,
+        since: 2023,
+        desc: 'My first language — async/await, closures, prototypes, event loop. The foundation everything else is built on.',
+      },
+      {
+        name: 'HTML5 & CSS3',
+        level: 5,
+        since: 2022,
+        desc: 'Deep box model understanding earned building Portfolio V1 with zero frameworks. Semantic HTML and modern CSS.',
+      },
+      {
+        name: 'Tailwind CSS',
+        level: 5,
+        since: 2023,
+        desc: 'Go-to utility framework. Paired with CSS custom properties for the Batman/Superman theme system on this portfolio.',
+      },
+      {
+        name: 'Framer Motion',
+        level: 4,
+        since: 2024,
+        desc: 'AnimatePresence, layout animations, and gesture-driven UX. Changed how I think about state transitions visually.',
+      },
+      {
+        name: 'Shadcn UI',
+        level: 4,
+        since: 2024,
+        desc: 'Used in AniVoice AI for accessible base components I could fully restyle without fighting opinionated defaults.',
+      },
+      {
+        name: 'TypeScript',
+        level: 4,
+        since: 2025,
+        desc: 'Added to TemplateZone mid-build. Caught three real bugs before they hit production. Now a default for new projects.',
+      },
+    ],
+  },
+  {
+    id: 'threejs',
+    label: '3D & Creative Dev',
+    accent: '#a78bfa',
+    glow: 'rgba(167,139,250,0.15)',
+    icon: '◈',
+    summary: 'WebGL, 3D scenes, and GPU-accelerated interactive experiences.',
+    skills: [
+      {
+        name: 'Three.js',
+        level: 3,
+        since: 2025,
+        desc: 'Direct Three.js before R3F — scene graph, render loop, geometry, materials. Essential foundation for R3F.',
+      },
+      {
+        name: 'React Three Fiber',
+        level: 3,
+        since: 2025,
+        desc: 'This portfolio is the deepest R3F project I\'ve built — GLB models, particles, custom shaders, and post-processing.',
+      },
+      {
+        name: '@react-three/drei',
+        level: 3,
+        since: 2025,
+        desc: 'Float, ContactShadows, Environment, OrbitControls, Html overlays. Drei is indispensable for rapid 3D development.',
+      },
+      {
+        name: 'GSAP',
+        level: 3,
+        since: 2025,
+        desc: 'ScrollTrigger for scroll-linked animations across this portfolio. The stagger API is the cleanest animation tool I\'ve used.',
+      },
+      {
+        name: 'Blender (GLB export)',
+        level: 2,
+        since: 2025,
+        desc: 'Model inspection, transformation, and optimised GLB export for web. Enough to prep assets for Three.js scenes.',
+      },
+    ],
+  },
+  {
+    id: 'backend',
+    label: 'Backend & APIs',
+    accent: '#34d399',
+    glow: 'rgba(52,211,153,0.15)',
+    icon: '⬢',
+    summary: 'Production-grade REST APIs, auth systems, and data pipelines.',
+    skills: [
+      {
+        name: 'Node.js',
+        level: 5,
+        since: 2023,
+        desc: 'The backbone of every full-stack project. Event loop, streams, and non-blocking I/O deeply understood.',
+      },
+      {
+        name: 'Express.js',
+        level: 5,
+        since: 2023,
+        desc: 'Custom middleware for rate limiting and JWT refresh rotation in AniResume taught me how Express truly works.',
+      },
+      {
+        name: 'MongoDB',
+        level: 4,
+        since: 2023,
+        desc: 'Document schema design across 5+ apps. Snapshot arrays for version history in AniBlog — a real schema design challenge.',
+      },
+      {
+        name: 'JWT Auth',
+        level: 4,
+        since: 2023,
+        desc: 'Full refresh token rotation in AniResume. Understanding the attack surface changed how I design every auth flow.',
+      },
+      {
+        name: 'Clerk Auth',
+        level: 4,
+        since: 2024,
+        desc: 'Role-based access across social and email flows in TemplateZone — zero custom auth routes, production-ready.',
+      },
+      {
+        name: 'REST API Design',
+        level: 4,
+        since: 2023,
+        desc: 'Consistent resource naming, versioning, error contracts, and pagination across every backend I\'ve built.',
+      },
+      {
+        name: 'Puppeteer',
+        level: 3,
+        since: 2024,
+        desc: 'Server-side ATS-clean PDF generation in AniResume. Getting print-mode CSS right without quirks was the challenge.',
+      },
+    ],
+  },
+  {
+    id: 'ai',
+    label: 'AI & Integrations',
+    accent: '#f59e0b',
+    glow: 'rgba(245,158,11,0.15)',
+    icon: '◎',
+    summary: 'LLM integrations, prompt engineering, and AI-powered product features.',
+    skills: [
+      {
+        name: 'Gemini API',
+        level: 4,
+        since: 2024,
+        desc: 'Multi-turn conversations, structured JSON extraction, and streaming in AniResume, Animi AI, AniBlog, and AI Notes App.',
+      },
+      {
+        name: 'HuggingFace',
+        level: 3,
+        since: 2024,
+        desc: 'Inference endpoints for AniVoice AI. Cold start latency led me to build a queuing + streaming layer on top.',
+      },
+      {
+        name: 'Prompt Engineering',
+        level: 4,
+        since: 2024,
+        desc: 'Multi-column PDF extraction prompts with schema validation in AniResume. Prompt design is half the product work.',
+      },
+      {
+        name: 'Streaming Responses',
+        level: 3,
+        since: 2024,
+        desc: 'Token-by-token streaming in AniVoice AI to reduce perceived latency. Kept the UI feeling alive during model warm-up.',
+      },
+      {
+        name: 'Web Speech API',
+        level: 3,
+        since: 2024,
+        desc: 'Zero-cost TTS in AniVoice AI. Browser APIs are underrated — no monthly bill and surprisingly good voice quality.',
+      },
+    ],
+  },
+  {
+    id: 'devops',
+    label: 'DevOps & Tooling',
+    accent: '#fb7185',
+    glow: 'rgba(251,113,133,0.15)',
+    icon: '⬟',
+    summary: 'Modern build tools, deployment pipelines, and media delivery.',
+    skills: [
+      {
+        name: 'Git & GitHub',
+        level: 5,
+        since: 2023,
+        desc: 'Branching strategies, atomic commits, and PR workflows. Daily driver across every solo and client project.',
+      },
+      {
+        name: 'Vite',
+        level: 5,
+        since: 2023,
+        desc: 'Build tool for this portfolio. HMR speed made the Three.js development loop significantly faster than Webpack.',
+      },
+      {
+        name: 'Vercel',
+        level: 5,
+        since: 2023,
+        desc: 'Every project in this portfolio deployed on Vercel. Preview deployments changed how I review my own work.',
+      },
+      {
+        name: 'Netlify',
+        level: 4,
+        since: 2023,
+        desc: 'First deployment platform I ever used. Still use it for static sites. Signature Pad and Portfolio V1 live here.',
+      },
+      {
+        name: 'ImageKit CDN',
+        level: 3,
+        since: 2024,
+        desc: 'Migrated from Cloudinary in TemplateZone mid-build. Real lesson: media pipeline migrations need zero-downtime planning.',
+      },
+      {
+        name: 'Cloudinary',
+        level: 3,
+        since: 2024,
+        desc: 'Avatar management and on-the-fly image transformations in AniVoice AI. Transformation API handles resizing cleanly.',
+      },
+    ],
+  },
+]
