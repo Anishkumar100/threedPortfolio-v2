@@ -73,12 +73,13 @@ const Hero = () => {
             </p>
 
             {/* ── CTA Button ────────────────────────────────────────────── */}
-            <Link to="/work">
-            <Button
-              id="button"
-              className="md:w-80 md:h-16 w-60 h-12"
-              text="See My Work"
-            />
+            {/* Added relative, a higher z-index, and pointer-events-auto */}
+            <Link to="/work" className="relative z-50 pointer-events-auto inline-block">
+              <Button
+                id="button"
+                className="md:w-80 md:h-16 w-60 h-12"
+                text="See My Work"
+              />
             </Link>
           </div>
         </header>
