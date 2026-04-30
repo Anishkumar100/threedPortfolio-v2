@@ -2,20 +2,19 @@ import { useRef } from 'react'
 import { useTheme } from '../context/ThemeContext'
 import { Link } from 'react-router-dom'
 
-const Button = ({ text, className, id }) => {
+// 1. Added 'to', 'onClick', and 'type' props
+const Button = ({ text, className, id, to, onClick, type = "button" }) => {
   const { theme } = useTheme()
   const isDark = theme === 'dark'
   const btnRef = useRef(null)
 
   // ── Magnetic hover effect ──────────────────────────────────────────────────
-  // On mouse move, the button subtly follows the cursor — feels alive and premium
   const handleMouseMove = (e) => {
     const btn = btnRef.current
     if (!btn) return
     const rect = btn.getBoundingClientRect()
     const x = e.clientX - rect.left - rect.width  / 2
     const y = e.clientY - rect.top  - rect.height / 2
-    // Limit magnetic pull to ±8px so it's subtle, not jarring
     btn.style.transform = `translate(${x * 0.12}px, ${y * 0.12}px)`
   }
 
@@ -24,16 +23,9 @@ const Button = ({ text, className, id }) => {
       btnRef.current.style.transform = 'translate(0px, 0px)'
   }
 
-  return (
-    <Link
-      id={id}
-      ref={btnRef}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      className={`${className ?? ''} group relative inline-flex cursor-pointer select-none`}
-      style={{ transition: 'transform 0.4s cubic-bezier(0.23, 1, 0.32, 1)' }}
-    >
-      {/* ── Outer glow ring — pulses on hover ─────────────────────────────── */}
+  // 2. Extract the complex inner HTML into a variable so we stay DRY
+  const innerContent = (
+    <>
       <span
         className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-lg scale-110"
         style={{
@@ -43,8 +35,6 @@ const Button = ({ text, className, id }) => {
           zIndex: -1,
         }}
       />
-
-      {/* ── Main button shell ─────────────────────────────────────────────── */}
       <div
         className="relative flex items-center gap-5 pl-6 pr-2 py-2 rounded-2xl overflow-hidden"
         style={{
@@ -57,8 +47,6 @@ const Button = ({ text, className, id }) => {
             : '0 0 0 0 rgba(212,32,12,0), inset 0 1px 0 rgba(255,255,255,0.8)',
         }}
       >
-        {/* ── Shimmer sweep on hover ──────────────────────────────────────── */}
-        {/* A white diagonal light ray sweeps left→right on hover */}
         <span
           className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out"
           style={{
@@ -66,8 +54,6 @@ const Button = ({ text, className, id }) => {
             zIndex: 1,
           }}
         />
-
-        {/* ── Text ───────────────────────────────────────────────────────── */}
         <span
           className="relative z-10 uppercase font-bold tracking-[0.2em] text-sm transition-all duration-300 group-hover:tracking-[0.25em]"
           style={{
@@ -77,9 +63,6 @@ const Button = ({ text, className, id }) => {
         >
           {text}
         </span>
-
-        {/* ── Arrow pill ─────────────────────────────────────────────────── */}
-        {/* The pill has its own background that shifts on hover */}
         <span
           className="relative z-10 flex items-center justify-center w-10 h-10 rounded-xl overflow-hidden transition-all duration-500 group-hover:w-12"
           style={{
@@ -91,19 +74,44 @@ const Button = ({ text, className, id }) => {
               : '0 4px 15px rgba(212,32,12,0.4)',
           }}
         >
-          {/* Arrow rotates 90° on hover — points right by default */}
           <img
             src="/images/arrow-down.svg"
             alt="arrow"
             className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5"
             style={{
               transform: 'rotate(-90deg)',
-              filter: 'brightness(0) invert(1)', // always white arrow on gradient bg
+              filter: 'brightness(0) invert(1)',
             }}
           />
         </span>
       </div>
-    </Link>
+    </>
+  )
+
+  // 3. Create a common props object for the wrapper
+  const commonProps = {
+    id,
+    ref: btnRef,
+    onClick,
+    onMouseMove: handleMouseMove,
+    onMouseLeave: handleMouseLeave,
+    className: `${className ?? ''} group relative inline-flex cursor-pointer select-none`,
+    style: { transition: 'transform 0.4s cubic-bezier(0.23, 1, 0.32, 1)' }
+  }
+
+  // 4. THE MAGIC: Return a Link IF 'to' exists, otherwise return a normal button
+  if (to) {
+    return (
+      <Link to={to} {...commonProps}>
+        {innerContent}
+      </Link>
+    )
+  }
+
+  return (
+    <button type={type} {...commonProps}>
+      {innerContent}
+    </button>
   )
 }
 

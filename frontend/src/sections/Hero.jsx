@@ -6,11 +6,13 @@ import HeroExperience from '../components/Home/HeroModels/HeroExperience'
 import GothamParticles from '../components/Home/HeroModels/GothamParticles'
 import { useTheme } from '../context/ThemeContext'
 import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 const Hero = () => {
   const heroRef = useRef()
   const { theme } = useTheme()
   const { config } = useSiteData()
   const words = config?.words?.length > 0 ? config.words : defaultWords
+  const navigate = useNavigate()
 
   return (
     <section
@@ -74,13 +76,17 @@ const Hero = () => {
 
             {/* ── CTA Button ────────────────────────────────────────────── */}
             {/* Added relative, a higher z-index, and pointer-events-auto */}
-            <Link to="/work" className="relative z-50 pointer-events-auto inline-block">
+            {/* We keep the Link, add the z-index fix here, and make it inline so it wraps tightly */}
+            
               <Button
                 id="button"
-                className="md:w-80 md:h-16 w-60 h-12"
+                // We add the z-index and pointer-events directly to the button's classes
+                className="relative z-[100] pointer-events-auto md:w-80 md:h-16 w-60 h-12"
                 text="See My Work"
+                // We use the navigate hook to change the page when clicked
+                onClick={() => navigate('/work')}
               />
-            </Link>
+            
           </div>
         </header>
 
